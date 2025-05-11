@@ -1,0 +1,32 @@
+---
+- name: luching of ec2 instance with security group
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: security group
+      amazon.aws.ec2_security_group:
+        name: test-ansible
+        description: creating a security group
+        vpc_id: vpc-04550d2e519f89bca
+        rules:
+            - proto: tcp
+              from_port: 22
+              to_port: 22
+              cidr_ip: 0.0.0.0/0
+            - proto: tcp
+              from_port: 8080
+              to_port: 8080
+              cidr_ip: 0.0.0.0/0
+            - proto: tcp
+              from_port: 80
+              to_port: 80
+              cidr_ip: 0.0.0.0/0
+            - proto: tcp
+              from_port: 3001
+              to_port: 3001
+              cidr_ip: 0.0.0.0/0
+        rules_egress:
+            - proto: all
+              cidr_ip: 0.0.0.0/0
+      register: security_group
