@@ -3,7 +3,7 @@ name: provision of ec2 instance
 on:
  push:
   branches:
-    - main
+   - master
 
 jobs:
  provision_ec2:
