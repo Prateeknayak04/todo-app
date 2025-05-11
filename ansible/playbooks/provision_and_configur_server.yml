@@ -30,3 +30,14 @@
             - proto: all
               cidr_ip: 0.0.0.0/0
       register: security_group
+    
+    - name: Lunch a ec2 instance
+      amazon.aws.ec2_instance:
+          name: Ansible-test-1
+          key_name: new_key
+          region: ap-south-1
+          image_id: ami-062f0cc54dbfd8ef1
+          instance_type: t2.micro
+          security_group: "{{ security_group.group_id }}"       
+          count: 1
+      register: ec2
