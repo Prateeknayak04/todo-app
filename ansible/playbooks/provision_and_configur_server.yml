@@ -41,7 +41,7 @@
           security_group: "{{ security_group.group_id }}"       
           count: 1
       register: ec2
-
+---
 - name: Installing  packages in dynamic instance
   hosts: lunched_ec2_instances
   become: yes
