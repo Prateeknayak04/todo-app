@@ -39,10 +39,6 @@ jobs:
   
    - name: Debug SSH key
      run: ls -l ~/.ssh/ec2_key.pem
-    
-   - name: Test SSH connection manually
-     run: |
-      ssh -i ~/.ssh/ec2_key.pem -o StrictHostKeyChecking=no ec2-user@ec2-13-233-143-153.ap-south-1.compute.amazonaws.com echo "SSH works!"
 
 
    - name: Run Ansible Playbook
