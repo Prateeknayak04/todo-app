@@ -68,11 +68,11 @@
 
 - name: Installing  packages in dynamic instance
   hosts: lunched_ec2_instances
-  become: yes
-  gather_facts: true
+  gather_facts: yes
 
   tasks:
     - name: install the packages
+      become: yes
       yum:
         name: "{{ item }}"
         state: present
@@ -82,12 +82,14 @@
       when: ansible_distribution == "Amazon"
     
     - name: Start the apache service
+      become: yes
       service:
         name: httpd
         state: started
         enabled: yes
     
-    - name: Copy source code 
+    - name: Copy source code
+      become: yes 
       synchronize:
         src: "{{ playbook_dir }}/../../"
         dest: "/opt/todo-app"
